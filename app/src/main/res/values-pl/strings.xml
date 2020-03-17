@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="landing_text">Cześć Pogodo!</string>
+    <string name="welcome_to">Witaj w</string>
+    <string name="weather_app">WEATHER APP</string>
+</resources>

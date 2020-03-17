@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name" translatable="false">WeatherAcc</string>
+    <string name="landing_text">Hello Weather</string>
+    <string name="WeatherAcc" translatable="false">Switch</string>
+    <string name="welcome_to">Welcome to</string>
+    <string name="weather_app">WEATHER APP</string>
+</resources>
