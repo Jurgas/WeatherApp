@@ -2,6 +2,6 @@ package com.example.weatheracc.viewModels
 
 import androidx.lifecycle.ViewModel
 
-class LocationListViewModel : ViewModel() {
+class SavedCityViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }

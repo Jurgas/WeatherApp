@@ -23,13 +23,22 @@
         android:label="ForecastListFragment"
         tools:layout="@layout/forecast_list_fragment">
         <action
-            android:id="@+id/action_forecastListFragment_to_locationListFragment"
-            app:destination="@id/locationListFragment" />
+            android:id="@+id/action_forecastListFragment_to_savedCityFragment"
+            app:destination="@id/savedCityFragment" />
     </fragment>
     <fragment
-        android:id="@+id/locationListFragment"
-        android:name="com.example.weatheracc.ui.fragment.LocationListFragment"
-        android:label="location_list_fragment"
-        tools:layout="@layout/location_list_fragment" />
+        android:id="@+id/savedCityFragment"
+        android:name="com.example.weatheracc.ui.fragment.SavedCityFragment"
+        android:label="saved_city_fragment"
+        tools:layout="@layout/saved_city_fragment">
+        <action
+            android:id="@+id/action_savedCityFragment_to_citySearchFragment"
+            app:destination="@id/citySearchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/citySearchFragment"
+        android:name="com.example.weatheracc.ui.fragment.CitySearchFragment"
+        android:label="city_search_fragment"
+        tools:layout="@layout/city_search_fragment" />
 
 </navigation>
