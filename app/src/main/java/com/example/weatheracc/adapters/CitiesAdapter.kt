@@ -7,12 +7,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatheracc.R
-import com.example.weatheracc.models.CityWeatherModel
+import com.example.weatheracc.models.WeatherForecast
 import kotlinx.android.synthetic.main.item_saved_city.view.*
 
 class CitiesAdapter(
-    private val listener: (CityWeatherModel) -> Unit
-) : ListAdapter<CityWeatherModel, CitiesAdapter.CitiesViewHolder>(DIFF_CALLBACK) {
+    private val listener: (WeatherForecast) -> Unit
+) : ListAdapter<WeatherForecast, CitiesAdapter.CitiesViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CitiesViewHolder =
         CitiesViewHolder(
@@ -28,19 +28,19 @@ class CitiesAdapter(
         holder.bind(getItem(position), listener)
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<CityWeatherModel>() {
-            override fun areItemsTheSame(oldItem: CityWeatherModel, newItem: CityWeatherModel) =
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<WeatherForecast>() {
+            override fun areItemsTheSame(oldItem: WeatherForecast, newItem: WeatherForecast) =
                 oldItem.id == newItem.id
 
 
-            override fun areContentsTheSame(oldItem: CityWeatherModel, newItem: CityWeatherModel) =
+            override fun areContentsTheSame(oldItem: WeatherForecast, newItem: WeatherForecast) =
                 oldItem == newItem
 
         }
     }
 
     class CitiesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(city: CityWeatherModel, listener: (CityWeatherModel) -> Unit) {
+        fun bind(city: WeatherForecast, listener: (WeatherForecast) -> Unit) {
             itemView.apply {
                 when (city.status) {
                     "Sunny" -> {
