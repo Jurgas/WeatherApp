@@ -1,7 +1,10 @@
 package com.example.weatheracc.viewModels
 
 import androidx.lifecycle.ViewModel
+import com.example.weatheracc.repository.Repository
+import javax.inject.Inject
 
-class ForecastListViewModel : ViewModel() {
+
+class ForecastListViewModel @Inject constructor(repository: Repository) : ViewModel() {
     // TODO: Implement the ViewModel
 }
