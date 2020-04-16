@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -25,21 +24,13 @@ class ForecastListFragment : DaggerFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(R.layout.forecast_list_fragment, container, false)
-        rootView.addWeather.setOnClickListener {
-            findNavController().navigate(
-                ForecastListFragmentDirections.actionForecastListFragmentToSavedCityFragment()
-            )
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(
-            this,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    activity?.finish()
-                }
+        return inflater.inflate(R.layout.forecast_list_fragment, container, false).apply {
+            addWeather.setOnClickListener {
+                findNavController().navigate(
+                    ForecastListFragmentDirections.actionForecastListFragmentToSearchFragment2()
+                )
             }
-        )
-        return rootView
-    }
+        }
 
+    }
 }

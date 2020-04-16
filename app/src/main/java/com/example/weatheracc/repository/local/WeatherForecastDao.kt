@@ -1,11 +1,6 @@
 package com.example.weatheracc.repository.local
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.example.weatheracc.models.WeatherForecast
 import kotlinx.coroutines.flow.Flow
 
@@ -25,5 +20,8 @@ interface WeatherForecastDao {
     suspend fun delete(weatherForecastDao: WeatherForecast): Int
 
     @Query("SELECT * FROM weather_forecast")
-    fun getAll(): Flow<List<WeatherForecast>>
+    fun getAllFlow(): Flow<List<WeatherForecast>>
+
+    @Query("SELECT * FROM weather_forecast")
+    suspend fun getAll(): List<WeatherForecast>
 }

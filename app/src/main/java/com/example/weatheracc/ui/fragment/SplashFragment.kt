@@ -5,14 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.weatheracc.R
 import com.example.weatheracc.viewModels.SplashViewModel
 import dagger.android.support.DaggerFragment
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -27,18 +25,20 @@ class SplashFragment : DaggerFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val rootView = inflater.inflate(R.layout.main_fragment, container, false)
-        return rootView
-    }
-
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        lifecycleScope.launch {
-            delay(2500)
-            findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToForecastListFragment2())
+        return inflater.inflate(R.layout.main_fragment, container, false).apply {
+            viewModel.proceed.observe(
+                viewLifecycleOwner,
+                Observer {
+                    if (viewModel.list.isEmpty())
+                        findNavController().navigate(
+                            SplashFragmentDirections.actionSplashFragmentToForecastListFragment2()
+                        )
+                    else
+                        findNavController().navigate(
+                            SplashFragmentDirections.actionSplashFragmentToSavedCityFragment()
+                        )
+                })
         }
-
     }
 
 

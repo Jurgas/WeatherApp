@@ -14,7 +14,12 @@
             android:id="@+id/action_splashFragment_to_forecastListFragment2"
             app:destination="@id/forecastListFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/nav_graph" />
+        <action
+            android:id="@+id/action_splashFragment_to_savedCityFragment"
+            app:destination="@id/savedCityFragment"
+            app:popUpTo="@id/nav_graph" />
     </fragment>
 
     <fragment
@@ -23,8 +28,8 @@
         android:label="ForecastListFragment"
         tools:layout="@layout/forecast_list_fragment">
         <action
-            android:id="@+id/action_forecastListFragment_to_savedCityFragment"
-            app:destination="@id/savedCityFragment" />
+            android:id="@+id/action_forecastListFragment_to_searchFragment2"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/savedCityFragment"
@@ -32,13 +37,26 @@
         android:label="saved_city_fragment"
         tools:layout="@layout/saved_city_fragment">
         <action
-            android:id="@+id/action_savedCityFragment_to_citySearchFragment"
-            app:destination="@id/citySearchFragment" />
+            android:id="@+id/action_savedCityFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_savedCityFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/citySearchFragment"
-        android:name="com.example.weatheracc.ui.fragment.CitySearchFragment"
-        android:label="city_search_fragment"
-        tools:layout="@layout/city_search_fragment" />
+        android:id="@+id/searchFragment"
+        android:name="com.example.weatheracc.ui.fragment.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/search_fragment">
+        <action
+            android:id="@+id/action_searchFragment_to_savedCityFragment"
+            app:destination="@id/savedCityFragment"
+            app:popUpTo="@id/nav_graph" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.weatheracc.ui.fragment.DetailsFragment"
+        android:label="details_fragment"
+        tools:layout="@layout/details_fragment" />
 
 </navigation>
