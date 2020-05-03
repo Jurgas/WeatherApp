@@ -42,20 +42,25 @@ class CitiesAdapter(
     class CitiesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(city: WeatherForecast, listener: (WeatherForecast) -> Unit) {
             itemView.apply {
-                //                when (city.status) {
-//                    "Sunny" -> {
-//                        itemContainer.setBackgroundResource(R.drawable.background_sunny)
-//                    }
-//                    "Clouds" -> {
-//                        itemContainer.setBackgroundResource(R.drawable.background_clouds)
-//                    }
-//                    "Clear Sky" -> {
-                        itemContainer.setBackgroundResource(R.drawable.background_clear_sky)
-//                    }
-//                }
+                city.weather.firstOrNull()?.let {
+                    when (it.main) {
+                        "Mist" -> {
+                            itemContainer.setBackgroundResource(R.drawable.background_mist)
+                            itemContainer.ivIcon.setImageResource(R.drawable.ic_mist)
+                        }
+                        "Clear" -> {
+                            itemContainer.setBackgroundResource(R.drawable.background_sunny)
+                            itemContainer.ivIcon.setImageResource(R.drawable.ic_orange_sun)
+                        }
+                        else -> {
+                            itemContainer.setBackgroundResource(R.drawable.background_clouds)
+                            itemContainer.ivIcon.setImageResource(R.drawable.ic_cloud)
+                        }
+                    }
+                }
                 CityName.text = city.name
-                Date.text = city.weather.firstOrNull()?.description
-                Temperature.text = "${city.main.temp} °C"
+                Date.text = parseToDayMonthYear(city.dt)
+                Temperature.text = "${city.main.temp_max.toInt()}° / ${city.main.temp_min.toInt()}°"
                 setOnClickListener { listener(city) }
             }
         }

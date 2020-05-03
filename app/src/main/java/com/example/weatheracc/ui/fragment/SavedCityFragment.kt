@@ -1,11 +1,10 @@
 package com.example.weatheracc.ui.fragment
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -22,7 +21,9 @@ class SavedCityFragment : DaggerFragment() {
 
     private val citiesAdapter by lazy {
         CitiesAdapter {
-            Toast.makeText(context, it.name, Toast.LENGTH_LONG).show()
+            findNavController().navigate(
+                SavedCityFragmentDirections.actionSavedCityFragmentToDetailsFragment()
+            )
         }
     }
 
@@ -37,6 +38,7 @@ class SavedCityFragment : DaggerFragment() {
     ): View? {
 
         return inflater.inflate(R.layout.saved_city_fragment, container, false).apply {
+            floatingActionButton.setColorFilter(Color.WHITE)
             textSwitcher.setOnClickListener {
                 viewModel.updateUnits()
             }
@@ -52,7 +54,7 @@ class SavedCityFragment : DaggerFragment() {
                 })
 
                 units.observe(viewLifecycleOwner, Observer {
-                    textSwitcher.setText(getString(if (it == Units.METRIC) R.string.units_metric else R.string.units_imperial))
+                    textSwitcher.setText(getText(if (it == Units.METRIC) R.string.units_metric else R.string.units_imperial))
                 })
             }
         }

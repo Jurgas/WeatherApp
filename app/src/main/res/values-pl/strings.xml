@@ -2,5 +2,9 @@
 <resources>
     <string name="landing_text">Cześć Pogodo!</string>
     <string name="welcome_to">Witaj w</string>
-    <string name="weather_app">WEATHER APP</string>
+    <string name="feels_like">Odczuwalna </string>
+    <string name="add_your_first_location">"Aby dodać\npierwszą lokalizację"</string>
+    <string name="click">kliknij +</string>
+    <string name="city_name">Nazwa miasta</string>
+    <string name="search">Szukaj</string>
 </resources>

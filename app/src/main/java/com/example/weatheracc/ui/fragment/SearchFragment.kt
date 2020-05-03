@@ -38,6 +38,7 @@ class SearchFragment : DaggerFragment() {
         return inflater.inflate(R.layout.search_fragment, container, false)
             .apply {
                 btnConfirm.setOnClickListener { viewModel.searchCity(etSearch.text.toString()) }
+                btnBack.setOnClickListener { findNavController().popBackStack() }
                 rvCity.adapter = searchListAdapter
 
                 with(viewModel) {

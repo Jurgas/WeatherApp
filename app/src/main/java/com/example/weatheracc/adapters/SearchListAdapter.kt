@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.weatheracc.R
 import com.example.weatheracc.models.WeatherForecast
 import kotlinx.android.synthetic.main.item_search_city.view.*
+import java.util.*
 
 class SearchListAdapter(
     private val listener: (WeatherForecast) -> Unit
@@ -35,7 +36,7 @@ class SearchListAdapter(
     class CitySearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(city: WeatherForecast, listener: (WeatherForecast) -> Unit) {
             itemView.apply {
-                tvTitle.text = "${city.name}, ${city.sys.country}"
+                tvTitle.text = "${city.name}, ${Locale("en", city.sys.country).displayCountry}"
                 setOnClickListener { listener(city) }
             }
         }

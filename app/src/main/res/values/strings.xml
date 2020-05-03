@@ -1,9 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">WeatherAcc</string>
     <string name="landing_text">Hello Weather</string>
     <string name="WeatherAcc" translatable="false">Switch</string>
     <string name="welcome_to">Welcome to</string>
     <string name="weather_app" translatable="false">WEATHER APP</string>
-    <string name="units_metric" translatable="false"><b>°C! /</b> °F</string>
-    <string name="units_imperial" translatable="false">°C <b>/ °F!</b></string>
+    <string name="units_metric" translatable="false"><b>°C /</b> °F</string>
+    <string name="units_imperial" translatable="false">°C <b>/ °F</b></string>
+    <string name="feels_like">Feels like </string>
+    <string name="add_your_first_location">To add your\nfirst location</string>
+    <string name="click">click +</string>
+    <string name="city_name">City name</string>
+    <string name="search">Search</string>
 </resources>
