@@ -42,13 +42,6 @@ class WeekWeatherAdapter(
     class WeekWeatherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(hourlyWeather: HourlyWeather, listener: (HourlyWeather) -> Unit) {
             itemView.apply {
-                //                if (parseToDayName(hourlyWeather.dt) == parseToDayName((Date().time / 1000).toInt())) {
-//                    tvDayName.text = resources.getString(R.string.today)
-//                    itemView.setBackgroundResource(R.drawable.rounded_background_white)
-//                } else {
-//                    tvDayName.text = parseToDayName(hourlyWeather.dt)
-//                    itemView.setBackgroundResource(R.drawable.rounded_background_grey)
-//                }
                 tvDayName.text = parseToDayName(hourlyWeather.dt)
                 hourlyWeather.weather.firstOrNull()?.let {
                     when (it.icon) {

@@ -42,7 +42,7 @@ class DayWeatherAdapter(
     class DayWeatherViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(hourlyWeather: HourlyWeather, listener: (HourlyWeather) -> Unit) {
             itemView.apply {
-                tvHour.text = parseToHourMinutes(hourlyWeather.dt) // tutaj trzeba dodac timezone
+                tvHour.text = parseToHourMinutes(hourlyWeather.dt)
                 tvHourDescription.text = hourlyWeather.weather.firstOrNull()?.let {
                     it.description.capitalize()
                 }

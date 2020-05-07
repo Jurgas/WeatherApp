@@ -6,5 +6,5 @@ import javax.inject.Inject
 
 
 class ForecastListViewModel @Inject constructor(repository: Repository) : ViewModel() {
-    // TODO: Implement the ViewModel
+
 }

@@ -96,13 +96,8 @@ class DetailsFragment : DaggerFragment() {
         args.weatherForecast.weather.firstOrNull()?.let {
             when (it.main) {
                 "Clear" -> {
-                    if (args.weatherForecast.main.temp_max.toInt() >= 25) {
-                        view.ivBackground.setImageResource(R.drawable.background_sun_hot)
-                        view.ivSunOrange.visibility = View.VISIBLE
-                    } else {
-                        view.ivBackground.setImageResource(R.drawable.background_clear_sky)
-                        view.ivSun.visibility = View.VISIBLE
-                    }
+                    view.ivBackground.setImageResource(R.drawable.background_clear_sky)
+                    view.ivSun.visibility = View.VISIBLE
                 }
                 "Mist", "Smoke", "Haze", "Dust", "Fog", "Sand", "Ash", "Squall", "Tornado" -> {
                     view.ivBackground.setImageResource(R.drawable.background_mist)
