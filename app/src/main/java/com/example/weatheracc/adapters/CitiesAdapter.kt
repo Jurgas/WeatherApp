@@ -44,7 +44,9 @@ class CitiesAdapter(
             itemView.apply {
                 val time = java.util.Date().time / 1000 + city.sys.timezone
                 city.weather.firstOrNull()?.let {
-                    if (time in (city.sys.sunrise + city.sys.timezone + 1) until city.sys.sunset + city.sys.timezone) {
+                    if (time !in (city.sys.sunrise + city.sys.timezone + 1) until city.sys.sunset + city.sys.timezone) {
+                        itemContainer.setBackgroundResource(R.drawable.background_night_rectangle)
+                    } else {
                         itemContainer.setBackgroundResource(R.drawable.background_night_rectangle)
                         when (it.main) {
                             "Mist", "Smoke", "Haze", "Dust", "Fog", "Sand", "Ash", "Squall", "Tornado" -> {
@@ -65,8 +67,6 @@ class CitiesAdapter(
                                 itemContainer.ivIcon.setImageResource(R.drawable.ic_cloud)
                             }
                         }
-                    } else {
-                        itemContainer.setBackgroundResource(R.drawable.background_night_rectangle)
                     }
                 }
                 CityName.text = city.name
