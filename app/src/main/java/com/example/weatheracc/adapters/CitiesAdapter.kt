@@ -42,30 +42,24 @@ class CitiesAdapter(
     class CitiesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(city: WeatherForecast, listener: (WeatherForecast) -> Unit) {
             itemView.apply {
-                val time = java.util.Date().time / 1000 + city.sys.timezone
                 city.weather.firstOrNull()?.let {
-                    if (time !in (city.sys.sunrise + city.sys.timezone + 1) until city.sys.sunset + city.sys.timezone) {
-                        itemContainer.setBackgroundResource(R.drawable.background_night_rectangle)
-                    } else {
-                        itemContainer.setBackgroundResource(R.drawable.background_night_rectangle)
-                        when (it.main) {
-                            "Mist", "Smoke", "Haze", "Dust", "Fog", "Sand", "Ash", "Squall", "Tornado" -> {
-                                itemContainer.setBackgroundResource(R.drawable.background_mist_rectangle)
-                                itemContainer.ivIcon.setImageResource(R.drawable.ic_mist)
+                    when (it.main) {
+                        "Mist", "Smoke", "Haze", "Dust", "Fog", "Sand", "Ash", "Squall", "Tornado" -> {
+                            itemContainer.setBackgroundResource(R.drawable.background_mist_rectangle)
+                            itemContainer.ivIcon.setImageResource(R.drawable.ic_mist)
+                        }
+                        "Clear" -> {
+                            if (city.main.temp_max.toInt() >= 25) {
+                                itemContainer.setBackgroundResource(R.drawable.background_sunny_rectangle)
+                                itemContainer.ivIcon.setImageResource(R.drawable.ic_orange_sun)
+                            } else {
+                                itemContainer.setBackgroundResource(R.drawable.background_clear_sky_rectangle)
+                                itemContainer.ivIcon.setImageResource(R.drawable.ic_sun)
                             }
-                            "Clear" -> {
-                                if (city.main.temp_max.toInt() >= 25) {
-                                    itemContainer.setBackgroundResource(R.drawable.background_sunny_rectangle)
-                                    itemContainer.ivIcon.setImageResource(R.drawable.ic_orange_sun)
-                                } else {
-                                    itemContainer.setBackgroundResource(R.drawable.background_clear_sky_rectangle)
-                                    itemContainer.ivIcon.setImageResource(R.drawable.ic_sun)
-                                }
-                            }
-                            else -> {
-                                itemContainer.setBackgroundResource(R.drawable.background_clouds_rectangle)
-                                itemContainer.ivIcon.setImageResource(R.drawable.ic_cloud)
-                            }
+                        }
+                        else -> {
+                            itemContainer.setBackgroundResource(R.drawable.background_clouds_rectangle)
+                            itemContainer.ivIcon.setImageResource(R.drawable.ic_cloud)
                         }
                     }
                 }
