@@ -29,7 +29,11 @@
         tools:layout="@layout/forecast_list_fragment">
         <action
             android:id="@+id/action_forecastListFragment_to_searchFragment2"
-            app:destination="@id/searchFragment" />
+            app:destination="@id/searchFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
     </fragment>
     <fragment
         android:id="@+id/savedCityFragment"
@@ -38,10 +42,18 @@
         tools:layout="@layout/saved_city_fragment">
         <action
             android:id="@+id/action_savedCityFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
+            app:destination="@id/searchFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
         <action
             android:id="@+id/action_savedCityFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/enter_from_up"
+            app:exitAnim="@anim/exit_to_down"
+            app:popEnterAnim="@anim/enter_from_down"
+            app:popExitAnim="@anim/exit_to_up" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -51,12 +63,18 @@
         <action
             android:id="@+id/action_searchFragment_to_savedCityFragment"
             app:destination="@id/savedCityFragment"
+            app:enterAnim="@anim/enter_from_left"
+            app:exitAnim="@anim/exit_to_right"
             app:popUpTo="@id/nav_graph" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.weatheracc.ui.fragment.DetailsFragment"
         android:label="details_fragment"
-        tools:layout="@layout/details_fragment" />
+        tools:layout="@layout/details_fragment">
+        <argument
+            android:name="weatherForecast"
+            app:argType="com.example.weatheracc.models.WeatherForecast" />
+    </fragment>
 
 </navigation>

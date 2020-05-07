@@ -7,4 +7,7 @@
     <string name="click">kliknij +</string>
     <string name="city_name">Nazwa miasta</string>
     <string name="search">Szukaj</string>
+    <string name="today">Dzisiaj</string>
+    <string name="sunrise">Wschód słońca</string>
+    <string name="sunset">Zachód Słońca</string>
 </resources>

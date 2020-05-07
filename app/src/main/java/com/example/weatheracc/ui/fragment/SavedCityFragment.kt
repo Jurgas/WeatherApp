@@ -22,14 +22,13 @@ class SavedCityFragment : DaggerFragment() {
     private val citiesAdapter by lazy {
         CitiesAdapter {
             findNavController().navigate(
-                SavedCityFragmentDirections.actionSavedCityFragmentToDetailsFragment()
+                SavedCityFragmentDirections.actionSavedCityFragmentToDetailsFragment(it)
             )
         }
     }
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
-
     private val viewModel by viewModels<SavedCityViewModel> { factory }
 
     override fun onCreateView(
