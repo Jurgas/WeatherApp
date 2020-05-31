@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.weatheracc.adapters.parseToDayName
 import com.example.weatheracc.adapters.parseToHourMinutes
 import com.example.weatheracc.models.HourlyWeather
+import com.example.weatheracc.models.Units
 import com.example.weatheracc.models.WeatherForecast5Days
 import com.example.weatheracc.repository.Repository
 import com.example.weatheracc.repository.local.getUnits
@@ -97,7 +98,12 @@ class DetailsViewModel @Inject constructor(
     fun updateDescriptionHourForecast5DaysList(hourlyWeather: HourlyWeather) {
         val list = mutableListOf<Pair<String, String>>()
         list.add(Pair("Humidity", "${hourlyWeather.main.humidity}%"))
-        list.add(Pair("Wind", "${hourlyWeather.wind.speed.toInt()}m/s"))
+        list.add(
+            Pair(
+                "Wind",
+                "${hourlyWeather.wind.speed.toInt()}${if (sharedPreferences.getUnits() == Units.METRIC) "m/s" else "mph"}"
+            )
+        )
         list.add(Pair("Feels like", "${hourlyWeather.main.feels_like.toInt()}°"))
         list.add(Pair("Pressure", "${hourlyWeather.main.pressure}hPa"))
         list.addAll(addSunriseSunset())

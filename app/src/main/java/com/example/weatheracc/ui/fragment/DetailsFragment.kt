@@ -1,6 +1,7 @@
 package com.example.weatheracc.ui.fragment
 
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.weatheracc.R
 import com.example.weatheracc.adapters.*
+import com.example.weatheracc.models.Units
+import com.example.weatheracc.repository.local.getUnits
 import com.example.weatheracc.viewModels.DetailsViewModel
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.details_fragment.view.*
@@ -35,7 +38,7 @@ class DetailsFragment : DaggerFragment() {
     }
 
     private val descriptionAdapter by lazy {
-        DescriptionAdapter {}
+        DescriptionAdapter()
     }
 
     @Inject
@@ -64,11 +67,7 @@ class DetailsFragment : DaggerFragment() {
                 weather5Days.observe(viewLifecycleOwner, Observer {
                     val time = Date().time / 1000 + it.city.timezone
                     tvDate.text = parseToDayMonthHourMinutes(time.toInt())
-                    if (time in (it.city.sunrise + it.city.timezone + 1) until it.city.sunset + it.city.timezone)
-                        setDayBackground(rootView)
-                    else
-                        setNightBackground(rootView)
-
+                    setBackground(rootView)
                     it.list.firstOrNull()?.let { HourlyWeather ->
                         updateDayForecast5DaysList(parseToDayName(HourlyWeather.dt + it.city.timezone))
                     }
@@ -92,31 +91,47 @@ class DetailsFragment : DaggerFragment() {
     }
 
 
-    private fun setDayBackground(view: View) {
+    private fun setBackground(view: View) {
+        val sharedPref = context?.getSharedPreferences("weather_app", Context.MODE_PRIVATE)
+        val units = sharedPref?.getUnits() ?: Units.METRIC
         args.weatherForecast.weather.firstOrNull()?.let {
-            when (it.main) {
-                "Clear" -> {
-                    view.ivBackground.setImageResource(R.drawable.background_clear_sky)
-                    view.ivSun.visibility = View.VISIBLE
+            when (it.icon) {
+                "01d" -> {
+                    if ((args.weatherForecast.main.temp >= 25 && units == Units.METRIC) || args.weatherForecast.main.temp >= 77) {
+                        view.ivBackground.setImageResource(R.drawable.background_orange_sun)
+                        view.ivSunOrange.visibility = View.VISIBLE
+                    } else {
+                        view.ivBackground.setImageResource(R.drawable.background_clear_sky)
+                        view.ivSun.visibility = View.VISIBLE
+                    }
                 }
-                "Mist", "Smoke", "Haze", "Dust", "Fog", "Sand", "Ash", "Squall", "Tornado" -> {
-                    view.ivBackground.setImageResource(R.drawable.background_mist)
-                    view.ivCloudsFog.visibility = View.VISIBLE
-                }
-                "Rain" -> {
+                "09d", "10d" -> {
                     view.ivBackground.setImageResource(R.drawable.background_rain)
                     view.ivRain.visibility = View.VISIBLE
                     view.ivCloudsRain.visibility = View.VISIBLE
                 }
-                "Thunderstorm" -> {
+                "11d" -> {
                     view.ivBackground.setImageResource(R.drawable.background_rain)
                     view.ivThunder.visibility = View.VISIBLE
                     view.ivCloudsThunderstorm.visibility = View.VISIBLE
                 }
-                "Snow" -> {
+                "13d" -> {
                     view.ivBackground.setImageResource(R.drawable.background_snow)
                     view.ivCloudsSnow.visibility = View.VISIBLE
                     view.ivSnow.visibility = View.VISIBLE
+                }
+                "50d" -> {
+                    view.ivBackground.setImageResource(R.drawable.background_mist)
+                    view.ivCloudsFog.visibility = View.VISIBLE
+                }
+                "01n" -> {
+                    view.ivBackground.setImageResource(R.drawable.background_night)
+                    view.ivStars.visibility = View.VISIBLE
+                }
+                "02n", "03n", "04n", "09n", "10n", "11n", "13n", "50n" -> {
+                    view.ivBackground.setImageResource(R.drawable.background_night)
+                    view.ivStars.visibility = View.VISIBLE
+                    view.ivCloudsNight.visibility = View.VISIBLE
                 }
                 else -> {
                     view.ivBackground.setImageResource(R.drawable.background_clouds)
@@ -127,21 +142,4 @@ class DetailsFragment : DaggerFragment() {
 
         }
     }
-
-    private fun setNightBackground(view: View) {
-        args.weatherForecast.weather.firstOrNull()?.let {
-            view.ivBackground.setImageResource(R.drawable.background_night)
-            view.ivStars.visibility = View.VISIBLE
-            when (it.main) {
-                "Clear" -> {
-                }
-                else -> {
-                    view.ivCloudsNight.visibility = View.VISIBLE
-                }
-            }
-        }
-
-    }
-
-
 }

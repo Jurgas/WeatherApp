@@ -9,9 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.weatheracc.R
 import kotlinx.android.synthetic.main.item_forecast_description.view.*
 
-class DescriptionAdapter(
-    private val listener: (Pair<String, String>) -> Unit
-) : ListAdapter<Pair<String, String>, DescriptionAdapter.DescriptionViewHolder>(DIFF_CALLBACK) {
+class DescriptionAdapter :
+    ListAdapter<Pair<String, String>, DescriptionAdapter.DescriptionViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DescriptionViewHolder =
         DescriptionViewHolder(
@@ -24,7 +23,7 @@ class DescriptionAdapter(
 
 
     override fun onBindViewHolder(holder: DescriptionViewHolder, position: Int) =
-        holder.bind(getItem(position), listener)
+        holder.bind(getItem(position))
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Pair<String, String>>() {
@@ -45,7 +44,7 @@ class DescriptionAdapter(
     }
 
     class DescriptionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(description: Pair<String, String>, listener: (Pair<String, String>) -> Unit) {
+        fun bind(description: Pair<String, String>) {
             itemView.apply {
                 tvForecastDescription.text = description.first
                 tvForecastDescriptionValue.text = description.second
