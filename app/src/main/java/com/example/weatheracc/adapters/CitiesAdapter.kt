@@ -50,7 +50,7 @@ class CitiesAdapter(
                     when (it.icon) {
                         "01d" -> {
                             if ((city.main.temp >= 25 && sharedPref.getUnits() == Units.METRIC) || city.main.temp >= 77) {
-                                ivIcon.setImageResource(R.drawable.background_orange_sun)
+                                ivIcon.setImageResource(R.drawable.ic_orange_sun)
                                 itemContainer.setBackgroundResource(R.drawable.background_sunny_rectangle)
                             } else {
                                 ivIcon.setImageResource(R.drawable.ic_sun)

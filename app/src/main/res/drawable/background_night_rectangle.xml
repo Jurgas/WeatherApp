@@ -5,7 +5,7 @@
     android:viewportWidth="173"
     android:viewportHeight="165">
     <path
-        android:pathData="M23,11L148,11A16,16 0,0 1,164 27L164,144A16,16 0,0 1,148 160L23,160A16,16 0,0 1,7 144L7,27A16,16 0,0 1,23 11z"
+        android:pathData="M24,6L149,6A16,16 0,0 1,165 22L165,139A16,16 0,0 1,149 155L24,155A16,16 0,0 1,8 139L8,22A16,16 0,0 1,24 6z"
         android:fillType="evenOdd">
         <aapt:attr name="android:fillColor">
             <gradient

@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.weatheracc.R
 import com.example.weatheracc.adapters.CitiesAdapter
+import com.example.weatheracc.adapters.SavedCityDecorator
 import com.example.weatheracc.models.Units
 import com.example.weatheracc.viewModels.SavedCityViewModel
 import dagger.android.support.DaggerFragment
@@ -42,6 +43,7 @@ class SavedCityFragment : DaggerFragment() {
                 viewModel.updateUnits()
             }
             rvCity.adapter = citiesAdapter
+            rvCity.addItemDecoration(SavedCityDecorator(120))
             floatingActionButton.setOnClickListener {
                 findNavController().navigate(
                     SavedCityFragmentDirections.actionSavedCityFragmentToSearchFragment()

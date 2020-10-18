@@ -98,7 +98,7 @@ class DetailsFragment : DaggerFragment() {
             when (it.icon) {
                 "01d" -> {
                     if ((args.weatherForecast.main.temp >= 25 && units == Units.METRIC) || args.weatherForecast.main.temp >= 77) {
-                        view.ivBackground.setImageResource(R.drawable.background_orange_sun)
+                        view.ivBackground.setImageResource(R.drawable.background_sun_hot)
                         view.ivSunOrange.visibility = View.VISIBLE
                     } else {
                         view.ivBackground.setImageResource(R.drawable.background_clear_sky)
